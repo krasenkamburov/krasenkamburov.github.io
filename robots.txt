@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://asparuhkamburov.github.io/patyat-na-oslepenite/sitemap.xml
+Sitemap: https://krasenkamburov.github.io/sitemap.xml
