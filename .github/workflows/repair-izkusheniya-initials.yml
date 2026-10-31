@@ -1,0 +1,28 @@
+name: Repair Izkuheniya PDF EPUB initials
+on:
+  push:
+    branches: [prepare-krasenkamburov-migration]
+    paths:
+      - '.github/workflows/repair-izkusheniya-initials.yml'
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF editing library
+        run: python -m pip install pymupdf==1.26.7
+      - name: Correct the initial in PDF and EPUB
+        run: python scripts/repair_izkusheniya_initials.py
+      - name: Commit corrected books to publishing branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add books/izkusheniya-v-zdracha/izkusheniya-v-zdracha.pdf books/izkusheniya-v-zdracha/izkusheniya-v-zdracha.epub
+          git diff --cached --quiet && exit 1
+          git commit -m "Correct single initial in Izkuheniya v zdracha PDF and EPUB"
+          git push
