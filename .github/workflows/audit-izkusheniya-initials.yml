@@ -1,0 +1,39 @@
+name: Audit published Izkuheniya paragraph initials
+on:
+  push:
+    branches: [prepare-krasenkamburov-migration]
+    paths: ['.github/workflows/audit-izkusheniya-initials.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pymupdf==1.26.7
+      - name: Scan pages for suspicious paragraph initials
+        run: |
+          python - <<'PY'
+          import fitz
+          p="books/izkusheniya-v-zdracha/izkusheniya-v-zdracha.pdf"
+          doc=fitz.open(p)
+          suspects=[]
+          for i,page in enumerate(doc):
+              words=page.get_text("words",sort=True)
+              for j,w in enumerate(words[:-1]):
+                  t=w[4].strip(".,:;!?«»“”„()")
+                  nxt=words[j+1]
+                  if len(t)!=1 or not t.isupper() or not t.isalpha(): continue
+                  if w[5:7]!=nxt[5:7]: continue
+                  nt=nxt[4].strip(".,:;!?«»“”„()")
+                  if not nt or not nt[0].isalpha():continue
+                  if t.lower()==nt[0].lower():
+                      suspects.append((i+1,t,nxt[4],round(w[0]),round(w[1])))
+          print("PDF PAGES",len(doc))
+          print("REPEATED-INITIAL CANDIDATES",len(suspects))
+          for v in suspects[:120]: print("CANDIDATE",v)
+          print("PDF repaired first sentence:",'С крал Фелипе Четвърти' in doc[153].get_text(sort=True))
+          PY
