@@ -102,9 +102,9 @@ def make_pdf():
  cover=dst.new_page(width=rect.width,height=rect.height)
  cover.insert_image(cover.rect,filename=str(FRONT),keep_proportion=False)
  dst.insert_pdf(source,from_page=1,to_page=2)
- K=2
+ K=1
  linkplans=[]
- for groups,marker in ((PLAYS[:4],'I–IV'),(PLAYS[4:],'V–VII')):
+ for groups,marker in ((PLAYS,'I–VII'),):
   page,links=content_page(dst,source[1],groups,marker,K)
   linkplans.append((page.number,links))
  dst.insert_pdf(source,from_page=4,to_page=old_pages-1,links=False,annots=True)
@@ -123,13 +123,13 @@ def make_pdf():
  dst.set_toc(toc)
  dst.set_metadata({'title':'Седем пиеси — Красен Камбуров','author':'Красен Камбуров',
     'subject':'Драматургия, второ издание, София 2026','keywords':PDF_ISBN})
- newhash=hashlib.sha256('\n'.join(dst[i].get_text() for i in range(5,len(dst)-1)).encode()).hexdigest()
+ newhash=hashlib.sha256('\n'.join(dst[i].get_text() for i in range(3+K,len(dst)-1)).encode()).hexdigest()
  if old_body_hash!=newhash:raise ValueError('Original drama text was changed in PDF')
  outfile=ROOT/'sedem-piesi-v2.pdf'
  dst.save(outfile,garbage=4,deflate=True)
  check=fitz.open(outfile)
- assert len(check)==old_pages+2
- actual_links=sum(len(check[i].get_links()) for i in (3,4))
+ assert len(check)==old_pages+K
+ actual_links=sum(len(check[i].get_links()) for i in range(3,3+K))
  assert actual_links>=len(PLAYS)+sum(len(p['scenes']) for p in PLAYS)
  report={'source_pages':old_pages,'new_pages':len(check),'body_text_sha256':newhash,'bookmarks':len(check.get_toc()),'toc_links':actual_links,'size_bytes':outfile.stat().st_size}
  print('PDF_CHECK',json.dumps(report,ensure_ascii=False))
@@ -253,7 +253,7 @@ def make_epub():
  print('EPUB_CHECK',json.dumps(report,ensure_ascii=False));return report
 
 # Web accessible accordion (similar to Saborna kniga).
-def make_web_toc(n_toc_pages=2):
+def make_web_toc(n_toc_pages=1):
  css='''<style>.toc-wrap{max-width:960px;margin:auto;padding:38px 20px 80px}.toc-wrap h1{font-size:clamp(2.15rem,5vw,3.5rem);margin-bottom:1rem}.toc-wrap .intro{max-width:70ch;color:#c7c1b2;line-height:1.7}.toc-tools{display:flex;gap:.75rem;flex-wrap:wrap;margin:1.5rem 0 2rem}.toc-book{border:1px solid #3e423a;border-radius:3px;margin:1rem 0;background:#151b17}.toc-book summary{list-style:none;cursor:pointer;color:#e8ce90;padding:1.1rem 1.2rem;font-size:1.2rem;font-family:Georgia,serif}.toc-book summary::-webkit-details-marker{display:none}.toc-book summary::after{content:'+';float:right;font-family:sans-serif}.toc-book[open] summary::after{content:'−'}.toc-book ol{margin:0;padding:0 1.35rem 1.2rem 2.7rem}.toc-book li{padding:.42rem 0;color:#bdb8a8;border-bottom:1px solid #29312b}.toc-book a,.toc-book a:visited{color:#e4d1a4;text-decoration:none;border:0}.toc-book a:hover,.toc-book a:focus{color:#fff0ba;text-decoration:none}.toc-book small{float:right;color:#b2afa7;font-size:.8em}.toc-wrap .toc-tools a{color:#ebd5a1;text-decoration:none;border:1px solid #6d634c;padding:.7rem 1rem}.toc-wrap .toc-tools a:hover{background:#2b3028;color:#fff}.toc-book a:focus-visible{outline:2px solid #e6c786;outline-offset:3px}</style>'''
  page=['<!doctype html><html lang="bg"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
   '<title>Съдържание — Седем пиеси, Красен Камбуров</title>',
