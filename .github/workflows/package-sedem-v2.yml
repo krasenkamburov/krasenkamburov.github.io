@@ -1,0 +1,22 @@
+name: Package final Sedem piesi v2 edition
+on:
+  push:
+    branches: [prepare-krasenkamburov-migration]
+    paths:
+      - '.github/workflows/package-sedem-v2.yml'
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package final reader files
+        run: |
+          cd books/sedem-piesi
+          zip -9 Sedem_piesi_v2_FINAL.zip sedem-piesi.pdf sedem-piesi.epub sedem-piesi-cover.jpg sedem-piesi-back-cover.jpg index.html sadarzhanie.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Sedem-piesi-v2-FINAL
+          path: books/sedem-piesi/Sedem_piesi_v2_FINAL.zip
+          retention-days: 14
