@@ -4,6 +4,7 @@ on:
     branches: [prepare-krasenkamburov-migration]
     paths:
       - '.github/workflows/audit-sedem-piesi.yml'
+      - 'scripts/sedem_audit.py'
 permissions:
   contents: write
 jobs:
