@@ -1,4 +1,5 @@
 name: Build Sedem piesi v2 with accessible contents
+# Refinement: one-page seven-play contents, all chapter links retained
 on:
   push:
     branches: [prepare-krasenkamburov-migration]
