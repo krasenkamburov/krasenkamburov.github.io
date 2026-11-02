@@ -26,10 +26,8 @@ with zipfile.ZipFile(root/'sedem-piesi.epub') as z:
             report['epub_html'].append({'file':n,'bytes':len(raw),'headings':heads[:35],'head_count':len(heads),'intro':txt})
     for n in names:
         if n.endswith(('.opf','.ncx')):report['epub_'+n.split('/')[-1]]=z.read(n).decode('utf-8','replace')[:12000]
-# Identify brief stage-dividing headings, excluding speeches or explanatory prose.
-scene_re=re.compile(r'^(?:[Пп]ърва|[Вв]тора|[Тт]рета|[Чч]етвърта|[Пп]ета|[Шш]еста|[Сс]едма)\\s+картина$|^(?:[Пп]ърво|[Вв]торо|[Тт]рето|[Чч]етвърто)\\s+действ(?:ие|о)$|^ПРОЛОГ$|^ЕПИЛОГ$|^П\\s*Ъ\\s*Р\\s*В\\s*О\\s+Д\\s*Е\\s*Й\\s*С\\s*Т\\s*В\\s*О(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
-print('PDF PAGES',len(book),'EPUB HTML',len(report['epub_html']))
-,re.I)
+
+scene_re=re.compile(r'^(?:[Пп]ърва|[Вв]тора|[Тт]рета|[Чч]етвърта|[Пп]ета|[Шш]еста|[Сс]едма)\s+картина$|^(?:[Пп]ърво|[Вв]торо|[Тт]рето|[Чч]етвърто)\s+действ(?:ие|о)$|^ПРОЛОГ$|^ЕПИЛОГ$',re.I)
 report['scene_candidates']=[]
 for i,p in enumerate(book):
     for line in p.get_text(sort=True).splitlines():
@@ -37,8 +35,7 @@ for i,p in enumerate(book):
         if len(t)<70 and scene_re.match(t):report['scene_candidates'].append({'page':i+1,'text':t})
 report['epub_scene_candidates']=[]
 with zipfile.ZipFile(root/'sedem-piesi.epub') as z:
-    data=z.read('EPUB/text/ch002.xhtml')
-    doc=etree.fromstring(data,etree.XMLParser(recover=True))
+    doc=etree.fromstring(z.read('EPUB/text/ch002.xhtml'),etree.XMLParser(recover=True))
     for el in doc.iter():
         tag=etree.QName(el).localname.lower() if isinstance(el.tag,str) else ''
         if tag not in ('p','div','h2','h3'):continue
