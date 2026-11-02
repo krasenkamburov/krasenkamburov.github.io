@@ -23,7 +23,7 @@ jobs:
           from pathlib import Path
           doc=fitz.open('books/sedem-piesi/sedem-piesi-v2.pdf')
           out=Path('scripts/sedem_qa');out.mkdir(parents=True,exist_ok=True)
-          for idx,filename in [(0,'front'),(3,'contents-1'),(4,'contents-2'),(len(doc)-1,'back')]:
+          for idx,filename in [(0,'front'),(3,'contents-final'),(len(doc)-1,'back')]:
               pix=doc[idx].get_pixmap(matrix=fitz.Matrix(1.35,1.35),alpha=False)
               im=Image.frombytes('RGB',(pix.width,pix.height),pix.samples)
               im.save(out/(filename+'.jpg'),quality=82,optimize=True)
