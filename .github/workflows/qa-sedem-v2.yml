@@ -1,0 +1,37 @@
+name: Inspect rendered Sedem piesi v2
+on:
+  push:
+    branches: [prepare-krasenkamburov-migration]
+    paths:
+      - '.github/workflows/qa-sedem-v2.yml'
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pymupdf==1.26.7' pillow
+      - name: Render front, contents and back for visual quality assurance
+        run: |
+          python - <<'PY'
+          import fitz
+          from PIL import Image
+          from pathlib import Path
+          doc=fitz.open('books/sedem-piesi/sedem-piesi-v2.pdf')
+          out=Path('scripts/sedem_qa');out.mkdir(parents=True,exist_ok=True)
+          for idx,filename in [(0,'front'),(3,'contents-1'),(4,'contents-2'),(len(doc)-1,'back')]:
+              pix=doc[idx].get_pixmap(matrix=fitz.Matrix(1.35,1.35),alpha=False)
+              im=Image.frombytes('RGB',(pix.width,pix.height),pix.samples)
+              im.save(out/(filename+'.jpg'),quality=82,optimize=True)
+              print('QA_PAGE',filename,'size',im.size,'chars',len(doc[idx].get_text()))
+          PY
+      - name: Commit QA preview files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/sedem_qa
+          git diff --cached --quiet || (git commit -m "Render Sedem piesi v2 production QA previews" && git push)
