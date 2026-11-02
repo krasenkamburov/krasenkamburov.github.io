@@ -2483,5 +2483,119 @@
     }
   ],
   "epub_content.opf": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<package version=\"3.0\" xmlns=\"http://www.idpf.org/2007/opf\" unique-identifier=\"epub-id-1\" prefix=\"ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/\">\n  <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:opf=\"http://www.idpf.org/2007/opf\">\n    <dc:identifier id=\"epub-id-1\">978-619-94327-3-0</dc:identifier>\n    <dc:title id=\"epub-title-1\">Седем пиеси — Красен Камбуров</dc:title>\n    <dc:date id=\"epub-date\">2026-10-29T14:15:03Z</dc:date>\n    <dc:language>bg</dc:language>\n    <dc:creator id=\"epub-creator-1\">Красен Камбуров</dc:creator>\n    <meta refines=\"#epub-creator-1\" property=\"role\" scheme=\"marc:relators\">aut</meta>\n    <meta name=\"cover\" content=\"sedem-piesi-ebook-cover-front-only_jpg\" />\n    <meta property=\"dcterms:modified\">2026-10-29T14:15:04Z</meta>\n  </metadata>\n  <manifest>\n    <item id=\"ncx\" href=\"toc.ncx\" media-type=\"application/x-dtbncx+xml\" />\n    <item id=\"nav\" href=\"nav.xhtml\" media-type=\"application/xhtml+xml\" properties=\"nav\" />\n    <item id=\"stylesheet1\" href=\"styles/stylesheet1.css\" media-type=\"text/css\" />\n    <item id=\"cover_xhtml\" href=\"text/cover.xhtml\" media-type=\"application/xhtml+xml\" properties=\"svg\" />\n    <item id=\"ch001_xhtml\" href=\"text/ch001.xhtml\" media-type=\"application/xhtml+xml\" />\n    <item id=\"ch002_xhtml\" href=\"text/ch002.xhtml\" media-type=\"application/xhtml+xml\" />\n    <item properties=\"cover-image\" id=\"sedem-piesi-ebook-cover-front-only_jpg\" href=\"media/sedem-piesi-ebook-cover-front-only.jpg\" media-type=\"image/jpeg\" />\n  </manifest>\n  <spine toc=\"ncx\">\n    <itemref idref=\"cover_xhtml\" />\n    <itemref idref=\"nav\" />\n    <itemref idref=\"ch001_xhtml\" />\n    <itemref idref=\"ch002_xhtml\" />\n  </spine>\n  <guide>\n    <reference type=\"toc\" title=\"Седем пиеси — Красен Камбуров\" href=\"nav.xhtml\" />\n    <reference type=\"cover\" title=\"Cover\" href=\"text/cover.xhtml\" />\n  </guide>\n</package>\n",
-  "epub_toc.ncx": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ncx version=\"2005-1\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\">\n  <head>\n    <meta name=\"dtb:uid\" content=\"978-619-94327-3-0\" />\n    <meta name=\"dtb:depth\" content=\"1\" />\n    <meta name=\"dtb:totalPageCount\" content=\"0\" />\n    <meta name=\"dtb:maxPageNumber\" content=\"0\" />\n    <meta name=\"cover\" content=\"sedem-piesi-ebook-cover-front-only_jpg\" />\n  </head>\n  <docTitle>\n    <text>Седем пиеси — Красен Камбуров</text>\n  </docTitle>\n  <navMap>\n    <navPoint id=\"navPoint-1\">\n      <navLabel>\n        <text>Седем пиеси — Красен Камбуров</text>\n      </navLabel>\n      <content src=\"text/ch001.xhtml\" />\n      <navPoint id=\"navPoint-2\">\n        <navLabel>\n          <text>Издателски данни</text>\n        </navLabel>\n        <content src=\"text/ch001.xhtml#издателски-данни\" />\n      </navPoint>\n      <navPoint id=\"navPoint-3\">\n        <navLabel>\n          <text>Съдържание</text>\n        </navLabel>\n        <content src=\"text/ch001.xhtml#съдържание\" />\n      </navPoint>\n    </navPoint>\n    <navPoint id=\"navPoint-4\">\n      <navLabel>\n        <text>Беба</text>\n      </navLabel>\n      <content src=\"text/#беба\" />\n    </navPoint>\n    <navPoint id=\"navPoint-5\">\n      <navLabel>\n        <text>Жадувани от птиците</text>\n      </navLabel>\n      <content src=\"text/#жадувани-от-птиците\" />\n    </navPoint>\n    <navPoint id=\"navPoint-6\">\n      <navLabel>\n        <text>Всеки пет лета</text>\n      </navLabel>\n      <content src=\"text/#всеки-пет-лета\" />\n    </navPoint>\n    <navPoint id=\"navPoint-7\">\n      <navLabel>\n        <text>Глина</text>\n      </navLabel>\n      <content src=\"text/#глина\" />\n    </navPoint>\n    <navPoint id=\"navPoint-8\">\n      <navLabel>\n        <text>Календи нула</text>\n      </navLabel>\n      <content src=\"text/#календи-нула\" />\n    </navPoint>\n    <navPoint id=\"navPoint-9\">\n      <navLabel>\n        <text>Като куче</text>\n      </navLabel>\n      <content src=\"text/#като-куче\" />\n    </navPoint>\n    <navPoint id=\"navPoint-10\">\n      <navLabel>\n        <text>Спонтанно</text>\n      </navLabel>\n      <content src=\"text/#спонтанно\" />\n    </navPoint>\n  </navMap>\n</ncx>\n"
+  "epub_toc.ncx": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ncx version=\"2005-1\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\">\n  <head>\n    <meta name=\"dtb:uid\" content=\"978-619-94327-3-0\" />\n    <meta name=\"dtb:depth\" content=\"1\" />\n    <meta name=\"dtb:totalPageCount\" content=\"0\" />\n    <meta name=\"dtb:maxPageNumber\" content=\"0\" />\n    <meta name=\"cover\" content=\"sedem-piesi-ebook-cover-front-only_jpg\" />\n  </head>\n  <docTitle>\n    <text>Седем пиеси — Красен Камбуров</text>\n  </docTitle>\n  <navMap>\n    <navPoint id=\"navPoint-1\">\n      <navLabel>\n        <text>Седем пиеси — Красен Камбуров</text>\n      </navLabel>\n      <content src=\"text/ch001.xhtml\" />\n      <navPoint id=\"navPoint-2\">\n        <navLabel>\n          <text>Издателски данни</text>\n        </navLabel>\n        <content src=\"text/ch001.xhtml#издателски-данни\" />\n      </navPoint>\n      <navPoint id=\"navPoint-3\">\n        <navLabel>\n          <text>Съдържание</text>\n        </navLabel>\n        <content src=\"text/ch001.xhtml#съдържание\" />\n      </navPoint>\n    </navPoint>\n    <navPoint id=\"navPoint-4\">\n      <navLabel>\n        <text>Беба</text>\n      </navLabel>\n      <content src=\"text/#беба\" />\n    </navPoint>\n    <navPoint id=\"navPoint-5\">\n      <navLabel>\n        <text>Жадувани от птиците</text>\n      </navLabel>\n      <content src=\"text/#жадувани-от-птиците\" />\n    </navPoint>\n    <navPoint id=\"navPoint-6\">\n      <navLabel>\n        <text>Всеки пет лета</text>\n      </navLabel>\n      <content src=\"text/#всеки-пет-лета\" />\n    </navPoint>\n    <navPoint id=\"navPoint-7\">\n      <navLabel>\n        <text>Глина</text>\n      </navLabel>\n      <content src=\"text/#глина\" />\n    </navPoint>\n    <navPoint id=\"navPoint-8\">\n      <navLabel>\n        <text>Календи нула</text>\n      </navLabel>\n      <content src=\"text/#календи-нула\" />\n    </navPoint>\n    <navPoint id=\"navPoint-9\">\n      <navLabel>\n        <text>Като куче</text>\n      </navLabel>\n      <content src=\"text/#като-куче\" />\n    </navPoint>\n    <navPoint id=\"navPoint-10\">\n      <navLabel>\n        <text>Спонтанно</text>\n      </navLabel>\n      <content src=\"text/#спонтанно\" />\n    </navPoint>\n  </navMap>\n</ncx>\n",
+  "scene_candidates": [
+    {
+      "page": 40,
+      "text": "ПРОЛОГ"
+    },
+    {
+      "page": 42,
+      "text": "Първа картина"
+    },
+    {
+      "page": 57,
+      "text": "Втора картина"
+    },
+    {
+      "page": 68,
+      "text": "Трета картина"
+    },
+    {
+      "page": 79,
+      "text": "Четвърта картина"
+    },
+    {
+      "page": 96,
+      "text": "Пета картина"
+    },
+    {
+      "page": 108,
+      "text": "ВТОРО ДЕЙСТВО"
+    },
+    {
+      "page": 165,
+      "text": "Първа картина"
+    },
+    {
+      "page": 201,
+      "text": "Втора картина"
+    },
+    {
+      "page": 242,
+      "text": "ПЪРВО ДЕЙСТВИЕ"
+    },
+    {
+      "page": 291,
+      "text": "ВТОРО ДЕЙСТВИЕ"
+    }
+  ],
+  "epub_scene_candidates": [
+    {
+      "tag": "p",
+      "text": "ПРОЛОГ",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "Първа картина",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "Втора картина",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "Трета картина",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "Четвърта картина",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "Пета картина",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "ВТОРО ДЕЙСТВО",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "Първа картина",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "Втора картина",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "ПЪРВО ДЕЙСТВИЕ",
+      "id": null,
+      "class": null
+    },
+    {
+      "tag": "p",
+      "text": "ВТОРО ДЕЙСТВИЕ",
+      "id": null,
+      "class": null
+    }
+  ]
 }
